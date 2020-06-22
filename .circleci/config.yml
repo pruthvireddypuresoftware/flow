@@ -56,7 +56,6 @@ orbs:
                 PATH: /usr/local/bin:/usr/bin:/cygdrive/c/Windows/system32:/cygdrive/c/Windows:/cygdrive/c/Windows/System32/Wbem:/cygdrive/c/Windows/System32/WindowsPowerShell/v1.0
               command: |
                 [ -d _opam ] || opam switch create . ocaml-variants.4.07.1+mingw64c --deps-only --yes -vvv
-
 executors:
   linux-opam:
     docker:
@@ -120,7 +119,6 @@ commands:
             if [ ! -d _opam ]; then
               opam switch create . 4.07.1 --deps-only | cat
             fi
-
 jobs:
   checkout:
     executor: linux-node
@@ -391,7 +389,6 @@ jobs:
             if ($LASTEXITCODE -gt 0) {
               Throw "flow parser hardcoded ocaml tests exited with error code: $LASTEXITCODE"
             }
-
   npm_pack:
     executor: linux-node
     steps:
@@ -526,7 +523,6 @@ jobs:
         command: |
           cd website
           bundle exec s3_website push --site ~/flow/dist/flow.org
-
   # deploys flow.js and the libdefs to Try Flow on release branches
   try_flow_deploy:
     executor: awscli
